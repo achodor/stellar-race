@@ -27,11 +27,19 @@
           }, 
           {
             name: 'facebook/react',
-            stars: 21412,
+            stars: 2221412,
             color: '#61DAFB'
           }
         ]
       }
+    },
+    methods: {
+      sortRepos() {
+        return this.repos.sort((a, b) => a.stars - b.stars).reverse();
+      }
+    },
+    mounted() {
+      this.sortRepos()
     }
   }
 </script>
