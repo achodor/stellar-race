@@ -23,7 +23,7 @@
     data() {
       return {
         repo: {
-          color: '#22d8c2',
+          color: '#42b883',
           name: ''
         }
       }

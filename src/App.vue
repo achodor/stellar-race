@@ -2,13 +2,15 @@
   <div id="app">
     <h1>🚀 Gwiezdny wyścig ✨</h1>
     <div class="ranking">
-      <Repo v-for="(repo, index) in repos" :key="repo.name"
-        :color=repo.color
-        :place=index+1
-        :name=repo.name
-        :stars=repo.stars
-        @deleteRepo="deleteRepo(index)"
-      />
+      <transition-group name="list">
+        <Repo v-for="(repo, index) in repos" :key="repo.name"
+          :color=repo.color
+          :place=index+1
+          :name=repo.name
+          :stars=repo.stars
+          @deleteRepo="deleteRepo(index)"
+        />
+      </transition-group>
     </div>
     <AddForm @sendData="getData"/>
   </div>
@@ -96,6 +98,15 @@
         width: 800px;
         margin: 0 auto;
       }
+    }
+
+    .list-enter-active, .list-leave-active {
+      transition: all 1s;
+    }
+
+    .list-enter, .list-leave-to {
+      opacity: 0;
+      transform: translateY(30px);
     }
   }
 </style>
