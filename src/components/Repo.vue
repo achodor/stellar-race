@@ -5,7 +5,7 @@
       <span class="stars">{{ stars }}</span>
     </div>
     <img class="stars-svg" src="@/assets/stars.svg" alt="*" v-show="place === 1">
-    <button class="repo-delete"><img src="@/assets/times.svg" alt="x"></button>
+    <button class="repo-delete" @click="deleteRepo(place-1)"><img src="@/assets/times.svg" alt="x"></button>
   </div>
 </template>
 
@@ -28,6 +28,11 @@
       stars: {
         type: Number,
         required: true
+      }
+    },
+    methods: {
+      deleteRepo(index) {
+        this.$emit('deleteRepo', index);
       }
     }
   }

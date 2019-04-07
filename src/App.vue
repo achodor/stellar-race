@@ -7,6 +7,7 @@
         :place=index+1
         :name=repo.name
         :stars=repo.stars
+        @deleteRepo="deleteRepo(index)"
       />
     </div>
     <AddForm @sendData="getData"/>
@@ -43,6 +44,10 @@
       getData(repo) {
         repo.stars = 12333333;
         this.repos.push(repo);
+        this.sortRepos();
+      },
+      deleteRepo(index) {
+        this.repos.splice(index, 1);
         this.sortRepos();
       },
       sortRepos() {
