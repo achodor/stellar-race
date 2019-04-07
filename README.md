@@ -3,7 +3,7 @@ Vue.js tutorial app for a "Introduction to Vue.js" presentation for iGroup Polit
 
 <sub>_Aplikacja tutorialowa do prezentacji "Wprowadzenie do Vue.js" dla iGroup Politechnika Opolska. Apliakcja pozwala na wprowadzanie repozytoriów z GitHub'a i tworzy z nich ranking, który bazuje na liczbie gwiazdek na GitHub'ie._</sub>
 
-## Project setup
+### Project setup
 ```
 yarn install
 ```
