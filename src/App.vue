@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <h1>🚀 Gwiezdny wyścig ✨</h1>
+    <Ranking/>
     <AddForm/>
   </div>
 </template>
 
 <script>
   import AddForm from '@/components/AddForm.vue';
+  import Ranking from '@/views/Ranking.vue';
 
   export default {
     name: 'app',
     components: {
-      AddForm
+      AddForm,
+      Ranking
     }
   }
 </script>
@@ -28,6 +31,7 @@
   body { 
     background: #333;
     color: white;
+    margin: 0 auto;
   }
 
   #app {
