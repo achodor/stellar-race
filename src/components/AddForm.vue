@@ -4,7 +4,13 @@
         <h2>Dodaj repozytorium:</h2>
         <div class="btn-group">
           <div class="color-preview" :style="{ background: repo.color }"></div>
-          <input class="color-input" type="text" v-model="repo.color" :style="{ color: repo.color }">
+          <input
+            class="color-input"
+            type="text"
+            v-model="repo.color"
+            :style="{ color: repo.color }"
+            v-on:keyup.enter="sendData"
+          >
           <button class="add-btn" @click="sendData">Dodaj</button>
         </div>
         <input
@@ -12,7 +18,8 @@
           type="text"
           placeholder="właściciel/nazwa repozytoruim"
           v-model="repo.name"
-          v-on:keyup.enter="sendData">
+          v-on:keyup.enter="sendData"
+        >
       </div>
     </div>
 </template>
@@ -30,7 +37,7 @@
     },
     methods: {
       sendData() {
-        const newRepo = Object.assign({}, this.repo);  
+        const newRepo = Object.assign({}, this.repo);
         this.$emit('sendData', newRepo);
       }
     }

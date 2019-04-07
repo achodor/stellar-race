@@ -3,7 +3,7 @@
     <h1>🚀 Gwiezdny wyścig ✨</h1>
     <div class="ranking">
       <transition-group name="list">
-        <Repo v-for="(repo, index) in repos" :key="repo.name"
+        <Repo v-for="(repo, index) in repos" :key="repo.name + '-' + index"
           :color=repo.color
           :place=index+1
           :name=repo.name
