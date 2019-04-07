@@ -1,17 +1,35 @@
 <template>
   <div class="repo">
-    <div class="repo-wrapper">
-      <span class="name">1. vuejs/vue</span>
-      <span class="stars">134651</span>
+    <div class="repo-wrapper" :style="{ background: color }">
+      <span class="name">{{ place }}. {{ name }}</span>
+      <span class="stars">{{ stars }}</span>
     </div>
-    <img class="stars-svg" src="@/assets/stars.svg" alt="*">
+    <img class="stars-svg" src="@/assets/stars.svg" alt="*" v-show="place === 1">
     <button class="repo-delete"><img src="@/assets/times.svg" alt="x"></button>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'repo'
+    name: 'repo',
+    props: {
+      color: {
+        type: String,
+        required: true
+      },
+      place: {
+        type: Number,
+        required: true
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      stars: {
+        type: Number,
+        required: true
+      }
+    }
   }
 </script>
 
@@ -19,11 +37,16 @@
   .repo {
     width: 100%;
     position: relative;
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      margin: 0;
+    }
 
     .repo-wrapper {
       width: 100%;
       padding: 10px 20px;
-      background: #4BBD8A;
+      background: blue;
       color: white;
       display: flex;
       justify-content: space-between;
@@ -48,4 +71,3 @@
     }
   }
 </style>
-

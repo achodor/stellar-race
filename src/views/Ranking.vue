@@ -1,6 +1,17 @@
 <template>
   <div class="ranking">
-    <Repo/>
+    <Repo
+      color='#ff00ff'
+      :place='1'
+      name='vuejs/vue'
+      :stars='123456'
+    />
+    <Repo
+      color='#ff0000'
+      :place='2'
+      name='facebook/react'
+      :stars='21412'
+    />
   </div>
 </template>
 
