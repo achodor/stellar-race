@@ -17,6 +17,7 @@
 <script>
   import AddForm from '@/components/AddForm.vue';
   import Repo from '@/components/Repo.vue';
+  import axios from 'axios';
 
   export default {
     name: 'app',
@@ -26,25 +27,21 @@
     },
     data() {
       return {
-        repos: [
-          {
-            name: 'vuejs/vue',
-            stars: 123456,
-            color: '#42b983'
-          }, 
-          {
-            name: 'facebook/react',
-            stars: 2221412,
-            color: '#61DAFB'
-          }
-        ]
+        repos: []
       }
     },
     methods: {
-      getData(repo) {
-        repo.stars = 12333333;
-        this.repos.push(repo);
-        this.sortRepos();
+      async getData(repo) {
+        await axios.get('https://api.github.com/repos/' + repo.name)
+          .then(function (response) {
+            repo.stars = response.data.stargazers_count
+          })
+          .catch(function (error) {
+            console.log(error)
+          });
+
+        this.repos.push(repo)
+        this.sortRepos()
       },
       deleteRepo(index) {
         this.repos.splice(index, 1);
