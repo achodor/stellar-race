@@ -7,7 +7,7 @@
           <input class="color-input" type="text" v-model="color" :style="{ color: color }">
           <button class="add-btn">Dodaj</button>
         </div>
-        <input class="repo-input" type="text" placeholder="właściciel/nazwa repozytoruim">
+        <input class="repo-input" type="text" placeholder="właściciel/nazwa repozytoruim" v-model="repo">
       </div>
     </div>
 </template>
@@ -17,7 +17,8 @@
     name: 'addForm',
     data() {
       return {
-        color: '#22d8c2'
+        color: '#22d8c2',
+        repo: ''
       }
     }
   }

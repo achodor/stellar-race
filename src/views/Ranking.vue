@@ -1,16 +1,10 @@
 <template>
   <div class="ranking">
-    <Repo
-      color='#4BBD8A'
-      :place='1'
-      name='vuejs/vue'
-      :stars='123456'
-    />
-    <Repo
-      color='#61DAFB'
-      :place='2'
-      name='facebook/react'
-      :stars='21412'
+    <Repo v-for="(repo, index) in repos" :key="repo.stars"
+      :color=repo.color
+      :place=index+1
+      :name=repo.name
+      :stars=repo.stars
     />
   </div>
 </template>
@@ -22,6 +16,22 @@
     name: 'ranking',
     components: {
       Repo
+    },
+    data() {
+      return {
+        repos: [
+          {
+            name: 'vuejs/vue',
+            stars: 123456,
+            color: '#42b983'
+          }, 
+          {
+            name: 'facebook/react',
+            stars: 21412,
+            color: '#61DAFB'
+          }
+        ]
+      }
     }
   }
 </script>
