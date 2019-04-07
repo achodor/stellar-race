@@ -34,18 +34,27 @@
     bottom: 0;
 
     .wrapper {
-      width: 800px;
+      width: calc(100% - 22px);
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-areas: "header buttons"
                             "input input";
-      padding: 25px 0 0 0;
+      padding: 25px 16px 0;
+
+      @media (min-width: 860px) {
+        width: 800px;
+      }
 
       h2 {
         color: $dark;
         grid-area: header;
         margin: 0 0 20px;
+        font-size: 1em;
+
+        @media (min-width: 860px) {
+            font-size: 1.5em;
+        }
       }
 
       .btn-group {
@@ -71,18 +80,33 @@
         }
 
         .add-btn {
-          background: $dark;
+          background: darken($dark, 5%);
           color: white;
           border: none;
           outline: none;
           cursor: pointer;
-          border-radius: 6px;
-          padding: 6px 20px;
+          position: absolute;
+          bottom: 140px;
+          width: 100%;
           transition: all .25s;
-          margin-left: 20px;
+          left: 0;
+          padding: 12px 0;
 
           &:hover {
-            background: darken($dark, 5%);
+            background: darken($dark, 10%);
+          }
+
+          @media (min-width: 860px) {
+            border-radius: 6px;
+            padding: 6px 20px;
+            margin-left: 20px;
+            position: static;
+            width: auto;
+            background: $dark;
+
+            &:hover {
+              background: darken($dark, 5%);
+            }
           }
         }
       }

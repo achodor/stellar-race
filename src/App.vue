@@ -42,6 +42,11 @@
 
     h1 {
       text-align: center;
+      font-size: 1.5em;
+
+      @media (min-width: 860px) {
+        font-size: 2em;
+      }
     }
   }
 </style>
