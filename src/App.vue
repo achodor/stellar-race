@@ -12,6 +12,12 @@
         />
       </transition-group>
     </div>
+    <transition name="error">
+      <div class="error" v-show="error">
+        Próba pobrania danych z API GitHub nie powiodła się! 😢
+        <button class="error-close" @click="error = false"><img src="@/assets/times.svg" alt="x"></button>
+      </div>
+    </transition>
     <AddForm @sendData="getData"/>
   </div>
 </template>
@@ -29,21 +35,25 @@
     },
     data() {
       return {
-        repos: []
+        repos: [],
+        error: false
       }
     },
     methods: {
       async getData(repo) {
+        this.error = false;
         await axios.get('https://api.github.com/repos/' + repo.name)
           .then(function (response) {
             repo.stars = response.data.stargazers_count
           })
-          .catch(function (error) {
-            console.log(error)
+          .catch(() => {
+            this.error = true
           });
 
-        this.repos.push(repo)
-        this.sortRepos()
+        if(!this.error) {
+          this.repos.push(repo)
+          this.sortRepos()
+        }
       },
       deleteRepo(index) {
         this.repos.splice(index, 1);
@@ -69,7 +79,7 @@
   }
 
   body { 
-    background: #333;
+    background: $dark;
     color: white;
     margin: 0 auto;
   }
@@ -107,6 +117,44 @@
     .list-enter, .list-leave-to {
       opacity: 0;
       transform: translateY(30px);
+    }
+
+    .error {
+      position: fixed;
+      bottom: 184px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background: $danger;
+      padding: 12px 0;
+      font-size: .75em;
+
+      @media (min-width: 860px) {
+        bottom: 140px;
+      }
+
+      .error-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        outline: none;
+        position: absolute;
+        right: 20px;
+        bottom: calc(50% - 10px);
+        opacity: .7;
+
+        img { 
+          width: 8px;
+          height: 8px;
+        }
+      }
+    }
+
+    .error-enter-active, .error-leave-active {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s;
     }
   }
 </style>

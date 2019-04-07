@@ -73,6 +73,7 @@
       cursor: pointer;
       padding: 0;
       outline: none;
+      opacity: .25;
     }
   }
 </style>
