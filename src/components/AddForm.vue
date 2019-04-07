@@ -3,11 +3,16 @@
       <div class="wrapper">
         <h2>Dodaj repozytorium:</h2>
         <div class="btn-group">
-          <div class="color-preview" :style="{ background: color }"></div>
-          <input class="color-input" type="text" v-model="color" :style="{ color: color }">
-          <button class="add-btn">Dodaj</button>
+          <div class="color-preview" :style="{ background: repo.color }"></div>
+          <input class="color-input" type="text" v-model="repo.color" :style="{ color: repo.color }">
+          <button class="add-btn" @click="sendData">Dodaj</button>
         </div>
-        <input class="repo-input" type="text" placeholder="właściciel/nazwa repozytoruim" v-model="repo">
+        <input
+          class="repo-input"
+          type="text"
+          placeholder="właściciel/nazwa repozytoruim"
+          v-model="repo.name"
+          v-on:keyup.enter="sendData">
       </div>
     </div>
 </template>
@@ -17,8 +22,16 @@
     name: 'addForm',
     data() {
       return {
-        color: '#22d8c2',
-        repo: ''
+        repo: {
+          color: '#22d8c2',
+          name: ''
+        }
+      }
+    },
+    methods: {
+      sendData() {
+        const newRepo = Object.assign({}, this.repo);  
+        this.$emit('sendData', newRepo);
       }
     }
   }
