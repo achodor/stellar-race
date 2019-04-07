@@ -3,8 +3,8 @@
       <div class="wrapper">
         <h2>Dodaj repozytorium:</h2>
         <div class="btn-group">
-          <div class="color-preview"></div>
-          <input class="color-input" type="text" value="#22d8c2">
+          <div class="color-preview" :style="{ background: color }"></div>
+          <input class="color-input" type="text" v-model="color" :style="{ color: color }">
           <button class="add-btn">Dodaj</button>
         </div>
         <input class="repo-input" type="text" placeholder="właściciel/nazwa repozytoruim">
@@ -14,7 +14,12 @@
 
 <script>
   export default {
-    name: 'addForm'
+    name: 'addForm',
+    data() {
+      return {
+        color: '#22d8c2'
+      }
+    }
   }
 </script>
 
@@ -48,7 +53,7 @@
         text-align: right;
 
         .color-preview {
-          background: #22d8c2;
+          background: $dark;
           width: 16px;
           height: 16px;
           border-radius: 2px;
@@ -58,7 +63,7 @@
         }
 
         .color-input {
-          color: #22d8c2;
+          color: $dark;
           width: 70px;
           border: none;
           background: transparent;
