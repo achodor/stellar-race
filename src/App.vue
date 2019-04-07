@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>🚀 Gwiezdny wyścig ✨</h1>
+    <AddForm/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import AddForm from '@/components/AddForm.vue';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    name: 'app',
+    components: {
+      AddForm
+    }
   }
-}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import url('https://fonts.googleapis.com/css?family=Poppins:600,700');
+  @import '@/scss/_colors.scss';
+
+  * {
+    box-sizing: border-box;  
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body { 
+    background: #333;
+    color: white;
+  }
+
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 10px 0 0;
+    margin: 0 auto;
+
+    h1 {
+      text-align: center;
+    }
+  }
 </style>
