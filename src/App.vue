@@ -1,16 +1,15 @@
 <template>
   <div id="app">
+    <Loader v-if="pending" />
     <h1>🚀 Gwiezdny wyścig ✨</h1>
     <div class="ranking">
-      <transition-group name="list">
-        <Repo v-for="(repo, index) in repos" :key="repo.name + '-' + index"
-          :color=repo.color
-          :place=index+1
-          :name=repo.name
-          :stars=repo.stars
-          @deleteRepo="deleteRepo(index)"
-        />
-      </transition-group>
+      <Repo v-for="(repo, index) in repos" :key="repo.name + '-' + index"
+        :color=repo.color
+        :place=index+1
+        :name=repo.name
+        :stars=repo.stars
+        @deleteRepo="deleteRepo(index)"
+      />
     </div>
     <transition name="error">
       <div class="error" v-show="error">
@@ -24,6 +23,7 @@
 
 <script>
   import AddForm from '@/components/AddForm.vue';
+  import Loader from '@/components/Loader.vue';
   import Repo from '@/components/Repo.vue';
   import axios from 'axios';
 
@@ -31,28 +31,34 @@
     name: 'app',
     components: {
       AddForm,
-      Repo
+      Repo,
+      Loader
     },
     data() {
       return {
         repos: [],
-        error: false
+        error: false,
+        pending: false
       }
     },
     methods: {
       async getData(repo) {
         this.error = false;
+        this.pending = true;
         await axios.get('https://api.github.com/repos/' + repo.name)
           .then(function (response) {
-            repo.stars = response.data.stargazers_count
+            repo.stars = response.data.stargazers_count;
           })
           .catch(() => {
-            this.error = true
+            this.error = true;
+          })
+          .then(() => {
+            this.pending = false;
           });
 
         if(!this.error) {
           this.repos.push(repo)
-          this.sortRepos()
+          this.sortRepos();
         }
       },
       deleteRepo(index) {
@@ -64,7 +70,7 @@
       }
     },
     mounted() {
-      this.sortRepos()
+      this.sortRepos();
     }
   }
 </script>
