@@ -9,7 +9,7 @@
             type="text"
             v-model="repo.color"
             :style="{ color: repo.color }"
-            v-on:keyup.enter="sendData"
+            @keyup.enter="sendData"
           >
           <button class="add-btn" @click="sendData">Dodaj</button>
         </div>

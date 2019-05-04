@@ -1,6 +1,6 @@
 <template>
   <div class="loader">
-    Ładowanie...
+    <slot name="text"></slot>
   </div>
 </template>
 

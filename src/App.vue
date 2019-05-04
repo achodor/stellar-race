@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Loader v-if="pending" />
+    <Loader v-if="pending">
+      <template #text>Ładowanie...</template>
+    </Loader>
     <h1>🚀 Gwiezdny wyścig ✨</h1>
     <div class="ranking">
       <Repo v-for="(repo, index) in repos" :key="repo.name + '-' + index"
